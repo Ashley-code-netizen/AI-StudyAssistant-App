@@ -1,0 +1,34 @@
+#Terminal_App. Py
+```python 
+Import JSON
+Import time
+Import random
+
+#************************************
+# LOAD NOTES FROM FILE
+#************************************
+
+try:
+   with ( "open notes.json", "r") as
+file:
+    notes = json. load(file) 
+except:
+     notes
+#**************************************
+#MAIN PROGRAM LOOP
+#**************************************
+
+While true :
+  print("\n===== AI STUDY ASSISTANT ====“)
+   print("1.notes")
+   print("2.View notes") 
+   print("3.Search notes") 
+   print("4.Start study timer") 
+   print("5.Generate quiz") 
+   print("6.Exit") 
+Choice = input("choose an option") 
+
+#****************************************
+#OPTION 01- ADD NOTES
+#****************************************
+
