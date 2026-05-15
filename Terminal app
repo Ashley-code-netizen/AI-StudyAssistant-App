@@ -32,3 +32,116 @@ Choice = input("choose an option")
 #OPTION 01- ADD NOTES
 #****************************************
 
+if choice =="1":
+  subject = input(" enter subject:") 
+  content = input(" enter notes:")
+  
+notes[subject] = content 
+with open("notes.json", "w") as file:
+            json.dump(notes, file)
+
+        print("Notes saved successfully!")
+# -------------------------------
+# OPTION 2 - VIEW NOTES
+# -------------------------------
+
+    elif choice == "2":
+
+        if len(notes) == 0:
+            print("No notes found.")
+
+        else:
+            print("\nYOUR NOTES:")
+
+            # ITERATION / LOOP
+            for subject, content in notes.items():
+                print(f"\nSubject: {subject}")
+                print(f"Notes: {content}")
+
+    # -------------------------------
+    # OPTION 3 - SEARCH NOTES
+    # -------------------------------
+
+    elif choice == "3":
+
+        keyword = input("Enter keyword to search: ")
+
+        found = False
+
+        # ITERATION
+        for subject, content in notes.items():
+
+            # IF STATEMENT
+            if keyword.lower() in content.lower():
+
+                print(f"\nFound in {subject}")
+                print(content)
+
+                found = True
+
+        if found == False:
+            print("No matching notes found.")
+
+    # -------------------------------
+    # OPTION 4 - STUDY TIMER
+    # -------------------------------
+
+    elif choice == "4":
+
+        minutes = int(input("Enter study time in minutes: "))
+
+        seconds = minutes * 60
+
+        print("Study session started!")
+
+        # ITERATION / COUNTDOWN LOOP
+        while seconds > 0:
+
+            mins = seconds // 60
+            secs = seconds % 60
+
+            print(f"{mins}:{secs}")
+
+            time.sleep(1)
+
+            seconds -= 1
+
+        print("Time is up!")
+
+    # -------------------------------
+    # OPTION 5 - QUIZ GENERATOR
+    # -------------------------------
+
+    elif choice == "5":
+
+        if len(notes) == 0:
+            print("No notes available for quiz.")
+
+        else:
+
+            subject = random.choice(list(notes.keys()))
+
+            print(f"\nQuestion:")
+            print(f"What topic belongs to {subject}?")
+
+            answer = input("Your answer: ")
+
+            print(f"Possible answer: {notes[subject]}")
+
+    # -------------------------------
+    # OPTION 6 - EXIT
+    # -------------------------------
+
+    elif choice == "6":
+
+        print("Goodbye!")
+        break
+
+    # -------------------------------
+    # INVALID OPTION
+    # -------------------------------
+
+    else:
+        print("Invalid option. Try again.")
+
+
