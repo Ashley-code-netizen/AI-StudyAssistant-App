@@ -1,49 +1,50 @@
-#Terminal_App. Py
+#Terminal_App. Py 
 ```python 
-Import JSON
+Import JSON 
 Import time
 Import random
 
-#************************************
+#****************************************************
 # LOAD NOTES FROM FILE
-#************************************
+#****************************************************
 
 try:
-   with ( "open notes.json", "r") as
-file:
-    notes = json. load(file) 
+    with open("notes.json", "r") as file:
+        notes = json.load(file)
 except:
-     notes
-#**************************************
+    notes = {}
+
+#****************************************************
 #MAIN PROGRAM LOOP
-#**************************************
+#****************************************************
 
-While true :
-  print("\n===== AI STUDY ASSISTANT ====“)
-   print("1.notes")
-   print("2.View notes") 
-   print("3.Search notes") 
-   print("4.Start study timer") 
-   print("5.Generate quiz") 
-   print("6.Exit") 
-Choice = input("choose an option") 
+while True:
+  print("\n===== AI STUDY ASSISTANT =====")
+  print("1.notes")
+  print("2.View notes")
+  print("3.Search notes")
+   print("4.Start study timer")
+    print("5.Generate quiz")
+    print("6.Exit")
+    choice = input("choose an option: ")
 
-#****************************************
-#OPTION 01- ADD NOTES
-#****************************************
+    #****************************************************
+    #OPTION 01- ADD NOTES
+    #****************************************************
 
-if choice =="1":
-  subject = input(" enter subject:") 
-  content = input(" enter notes:")
-  
-notes[subject] = content 
-with open("notes.json", "w") as file:
+    if choice == "1":
+        subject = input("Enter subject: ")
+        content = input("Enter notes: ")
+
+        notes[subject] = content
+        with open("notes.json", "w") as file:
             json.dump(notes, file)
 
         print("Notes saved successfully!")
-# -------------------------------
-# OPTION 2 - VIEW NOTES
-# -------------------------------
+
+    # -----------------------------------
+    # OPTION 2 - VIEW NOTES
+    # -----------------------------------
 
     elif choice == "2":
 
@@ -58,9 +59,9 @@ with open("notes.json", "w") as file:
                 print(f"\nSubject: {subject}")
                 print(f"Notes: {content}")
 
-    # -------------------------------
+    # -----------------------------------
     # OPTION 3 - SEARCH NOTES
-    # -------------------------------
+    # -----------------------------------
 
     elif choice == "3":
 
@@ -82,9 +83,9 @@ with open("notes.json", "w") as file:
         if found == False:
             print("No matching notes found.")
 
-    # -------------------------------
+    # -----------------------------------
     # OPTION 4 - STUDY TIMER
-    # -------------------------------
+    # -----------------------------------
 
     elif choice == "4":
 
@@ -99,18 +100,15 @@ with open("notes.json", "w") as file:
 
             mins = seconds // 60
             secs = seconds % 60
-
-            print(f"{mins}:{secs}")
-
+            print(f"Time remaining: {mins}:{secs:02d}", end="\r")
             time.sleep(1)
-
             seconds -= 1
 
         print("Time is up!")
 
-    # -------------------------------
+    # -----------------------------------
     # OPTION 5 - QUIZ GENERATOR
-    # -------------------------------
+    # -----------------------------------
 
     elif choice == "5":
 
@@ -128,20 +126,19 @@ with open("notes.json", "w") as file:
 
             print(f"Possible answer: {notes[subject]}")
 
-    # -------------------------------
+    # -----------------------------------
     # OPTION 6 - EXIT
-    # -------------------------------
+    # -----------------------------------
 
     elif choice == "6":
 
         print("Goodbye!")
         break
 
-    # -------------------------------
+    # -----------------------------------
     # INVALID OPTION
-    # -------------------------------
+    # -----------------------------------
 
     else:
         print("Invalid option. Try again.")
-
 
